@@ -1,5 +1,22 @@
 
-var app = angular.module('test', ['ui.bootstrap']);
+var app = angular.module('test', ['ui.bootstrap','ngRoute']);
+
+    app.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/', {
+        templateUrl: 'templates/quiz.html',
+        controller: 'submitController'
+      }).
+      when('/result', {
+        templateUrl: 'templates/result.html',
+        controller: 'resultController'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+  }]);
+
 
     app.controller('submitController', ['$scope','$http','$timeout', function($scope, $http, $timeout) {
 
@@ -40,6 +57,16 @@ var app = angular.module('test', ['ui.bootstrap']);
 
     }]);
 
+    app.controller('resultController', function($scope) {
+ 
+    $scope.message = 'This is Show orders screen';
+ 
+});
+
+
+
+
+    
    
 
 
