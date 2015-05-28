@@ -18,7 +18,7 @@ var app = angular.module('test', ['ui.bootstrap','ngRoute']);
   }]);
 
 
-    app.controller('submitController', ['$scope','$http','$timeout', function($scope, $http, $timeout) {
+    app.controller('submitController', ['$scope','$http','$timeout','$location','answerService', function($scope, $http, $timeout, $location, answerService) {
 
       $http.get('podaci.json').success(function(data) {
       $scope.data = data;
@@ -32,11 +32,20 @@ var app = angular.module('test', ['ui.bootstrap','ngRoute']);
             if( $scope.counter > 0 ){
               $scope.counter--;
             }
-             /*  else 
-            go to the other page */
            $scope.countdown();
           }, 1000);
+          if ($scope.counter == 0) {
+              answerService.set($scope.answers);
+              $location.path( "/result" );
+          }
         };
+
+        $scope.changePage = function() {
+          answerService.set($scope.answers);
+          $location.path( "/result" );
+        }
+
+
       
 
       $scope.answers = [];
@@ -57,9 +66,33 @@ var app = angular.module('test', ['ui.bootstrap','ngRoute']);
 
     }]);
 
-    app.controller('resultController', function($scope) {
-    $scope.message = 'Programirdono :)';
+    app.controller('resultController', ['$scope','answerService','$http', function($scope, answerService, $http) {
+    $scope.message = answerService.get();
+
+    $http.get('podaci.json').success(function(data) {
+      $scope.data = data;
+
+      $scope.counter = $scope.data.vreme;
+
+  });
  
+}]);
+
+
+
+    app.factory('answerService', function() {
+ var savedData = {}
+ function set(data) {
+   savedData = data;
+ }
+ function get() {
+  return savedData;
+ }
+ return {
+  set: set,
+  get: get
+ }
+
 });
 
 
