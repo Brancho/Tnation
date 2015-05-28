@@ -15,11 +15,10 @@ var app = angular.module('test', ['ui.bootstrap']);
             if( $scope.counter > 0 ){
               $scope.counter--;
             }
+             /*  else 
+            go to the other page */
            $scope.countdown();
           }, 1000);
-
-          else 
-            //go to the other page
         };
       
 
