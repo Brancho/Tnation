@@ -58,8 +58,7 @@ var app = angular.module('test', ['ui.bootstrap','ngRoute']);
     }]);
 
     app.controller('resultController', function($scope) {
- 
-    $scope.message = 'This is Show orders screen';
+    $scope.message = 'Programirdono :)';
  
 });
 

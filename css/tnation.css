@@ -7,8 +7,10 @@
 #right {
   float: right;
   width: 30%;
-  padding: 30px 80px;
+  padding: 30px 40px;
   font-size: 20px;
+  border: 2px solid black;
+  border-radius: 20px;
 }
 #vreme {
   float: right;
@@ -25,12 +27,15 @@
   float: right;
   width: 200px;
 }
-ol {
+#lista {
   width: 100%;
-  height: 500px;
+  height: 450px;
+  padding: 15px;
 }
-ol li {
+#listic {
   margin-top: 40px;
+  font-size: 25px;
+  font-weight: bold;
 }
 button,
 #submit {
