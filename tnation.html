@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html ng-app = "test">
 <head>
- <meta charset="UTF-8">
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/tnation.css">
 	<title>Tnation-test</title>
 </head>
@@ -11,17 +12,13 @@
   <input type="text" ng-model="text" name="text" />
   <input type="submit" id="submit" value="Submit" />
 <ol>
-  <li ng-repeat="city in list" ng-click="remove($index)">
+  <li ng-repeat="city in answers" ng-click="remove($index)">
      {{city}}
   </li>
 </ol>
-
-<div>
-
-
-</div>
 </form>
 <script type="text/javascript" src="tnation.js"></script>
+<script type="text/javascript" src="ui-bootstrap-tpls-0.13.0.min.js"></script>
 </body>
 </html>
 
