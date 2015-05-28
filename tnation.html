@@ -6,8 +6,8 @@
 <link rel="stylesheet" type="text/css" href="css/tnation.css">
 	<title>Tnation-test</title>
 </head>
-<body>
-<form ng-submit="submit()" ng-controller="submitController">
+<body ng-controller="submitController">
+<form ng-submit="submit()">
   <input type="text" ng-model="text" name="text" />
   <input type="submit" id="submit" value="Submit" />
 <ol>
@@ -16,12 +16,8 @@
   </li>
 </ol>
 
-<div ng-controller = "jsonController">
-<ol>
-  	<li ng-repeat="item in gradovi.ponudjene track by $index">
-     {{item}}
-</li>
-</ol>
+<div>
+
 
 </div>
 </form>

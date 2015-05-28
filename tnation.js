@@ -1,7 +1,7 @@
 
 var app = angular.module('test', []);
 
-    app.controller('submitController', ['$scope', function($scope) {
+    app.controller('submitController', ['$scope','$http', function($scope, $http) {
       $scope.list = [];
       $scope.text = '';
       $scope.submit = function() {
@@ -14,13 +14,13 @@ var app = angular.module('test', []);
       }
       };
 
+      $http.get('podaci.json').success(function(data) {
+      $scope.data = data;
+  });
+
     }]);
 
-    app.controller('jsonController', function($scope, $http) {
-          $http.get('podaci.json').success(function(data) {
-    $scope.gradovi = data;
-  });
-    });
+   
 
 
 
