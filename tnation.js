@@ -14,11 +14,11 @@ var app = angular.module('test', ['ui.bootstrap']);
           $scope.answers.push(this.text);
           $scope.text = '';
         }
-        $scope.remove = function($index) { 
+        
+      };
+      $scope.remove = function($index) { 
         $scope.answers.splice($index, 1);     
       }
-      };
-
 
 
     }]);
