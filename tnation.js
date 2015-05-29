@@ -71,14 +71,32 @@ var app = angular.module('test', ['ui.bootstrap','ngRoute']);
 
     $http.get('podaci.json').success(function(data) {
       $scope.data = data;
+      $scope.answers = answerService.get();
+      $scope.correctAnswers = $scope.data.tacno;
 
-      $scope.counter = $scope.data.vreme;
 
+
+
+    $scope.compareArrays = function(arr1, arr2){
+        var inBoth = [];
+        angular.forEach(arr1, function(a1){
+            angular.forEach(arr2, function(a2){
+                if (a1 == a2){
+                    inBoth.push(a1);
+                }
+            });
+        });
+        return inBoth.length;
+    };
+
+
+     $scope.dynamic = ($scope.compareArrays($scope.answers, $scope.correctAnswers) / $scope.correctAnswers.length) * 100;
+     $scope.max = 100;
+     
+     
   });
  
 }]);
-
-
 
     app.factory('answerService', function() {
  var savedData = {}
