@@ -32,11 +32,10 @@
   height: 450px;
   padding: 15px;
 }
-#listic {
+.listic {
   margin-top: 30px;
   font-size: 25px;
   font-weight: bold;
-  background-color: yellow;
 }
 button,
 #submit {
