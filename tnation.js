@@ -1,4 +1,4 @@
-var app = angular.module('test', ['ui.bootstrap','ngRoute']);
+var app = angular.module('test', ['ui.bootstrap','ngRoute','hms']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
@@ -30,24 +30,26 @@ $scope.countdown = function() {
             $scope.countdown();
             }, 1000);
             if ($scope.counter == 0) {
-              answerService.set($scope.answers);
-              $location.path( "/result" );
+              $scope.changePage();
             }
       };
 
 $scope.changePage = function() {
         answerService.set($scope.answers);
         $location.path( "/result" );
+        $scope.counter = $scope.data.vreme;
+        $timeout.cancel();
         }
 
 
 $scope.answers = [];
 $scope.text = '';
 $scope.submit = function() {
-        if ($scope.text) {
-           $scope.answers.push(this.text);
-           $scope.text = '';
+        if ( $.inArray($scope.text, $scope.data.ponudjene) !== -1) {
+
+           $scope.answers.push($scope.text);
         }  
+        $scope.text = '';
 };
       
 $scope.remove = function($index) { 
@@ -57,6 +59,7 @@ $scope.remove = function($index) {
 
 app.controller('resultController', ['$scope','answerService','$http', function($scope, answerService, $http) {
       $scope.message = answerService.get();
+      $scope.dynamic = 0;
       $http.get('podaci.json').success(function(data) {
       $scope.data = data;
       $scope.answers = answerService.get();
@@ -76,9 +79,7 @@ $scope.compareArrays = function(arr1, arr2){
     };
 
 
-$scope.dynamic = ($scope.compareArrays($scope.answers, $scope.correctAnswers) / $scope.correctAnswers.length) * 100;
-$scope.max = 100;
-        
+$scope.dynamic = ($scope.compareArrays($scope.answers, $scope.correctAnswers) / $scope.correctAnswers.length) * 100;        
 });
  
 }]);
