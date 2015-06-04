@@ -46,7 +46,7 @@ $scope.answers = [];
 $scope.text = '';
 $scope.submit = function() {
         if ( $.inArray($scope.text, $scope.data.ponudjene) !== -1) {
-
+            if ( $.inArray($scope.text, $scope.answers) == -1) 
            $scope.answers.push($scope.text);
         }  
         $scope.text = '';
